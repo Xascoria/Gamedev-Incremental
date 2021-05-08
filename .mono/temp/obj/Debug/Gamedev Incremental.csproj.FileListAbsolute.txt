@@ -1,0 +1,8 @@
+D:\Godot\projects\GamedevIncremental\.mono\temp\bin\Debug\Gamedev Incremental.dll
+D:\Godot\projects\GamedevIncremental\.mono\temp\bin\Debug\Gamedev Incremental.pdb
+D:\Godot\projects\GamedevIncremental\.mono\temp\obj\Debug\Gamedev Incremental.csprojAssemblyReference.cache
+D:\Godot\projects\GamedevIncremental\.mono\temp\obj\Debug\Gamedev Incremental.AssemblyInfoInputs.cache
+D:\Godot\projects\GamedevIncremental\.mono\temp\obj\Debug\Gamedev Incremental.AssemblyInfo.cs
+D:\Godot\projects\GamedevIncremental\.mono\temp\obj\Debug\Gamedev Incremental.csproj.CoreCompileInputs.cache
+D:\Godot\projects\GamedevIncremental\.mono\temp\obj\Debug\Gamedev Incremental.dll
+D:\Godot\projects\GamedevIncremental\.mono\temp\obj\Debug\Gamedev Incremental.pdb
