@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
 public class CodePanel : Panel
 {
@@ -22,10 +24,6 @@ public class CodePanel : Panel
 		label.Text = "";
 		//Readjust label size to fit all the lines on screen
 		label.RectSize = new Vector2(label.RectSize.x, (float) GetLineHeight() * max_lines_count);
-		// for (int i =0; i < max_lines_count; i++){
-		// 	label.Text += "Line " + (i+1) + (i == max_lines_count - 1? "":"\n");
-		// }
-
 	}
 
 	//This get the height of a single line
@@ -34,7 +32,52 @@ public class CodePanel : Panel
 		return label_font.GetHeight() + line_separation;
 	}
 
-	int test = 12;
+	//Take the string stored at the richtextlabel, slice it according to visible lines and put it back in.
+	private void ReformatLines()
+	{
+		String last_char = label.Text.Substr(label.Text.Length-1, label.Text.Length);
+		//Original lines in the text block
+		String[] lines = label.Text.Split("\n");
+		//Formatted lines
+		List<String> formatted_lines = new List<string>();
+
+		for (int i = 0; i < lines.Length; i++){
+			if (label_font.GetStringSize(lines[i]).x > label.RectSize.x){
+				StringBuilder str_builder = new StringBuilder(lines[i]);
+				while (label_font.GetStringSize( str_builder.ToString() ).x > label.RectSize.x)
+				{
+					//Remove the first visible line
+					int end = -1;
+					for (int j = 0; j < str_builder.Length; j++){
+						if (label_font.GetStringSize(str_builder.ToString(0, j)).x > label.RectSize.x){
+							end = j -1;
+							break;
+						}
+					}
+					formatted_lines.Add(str_builder.ToString(0, end));
+					str_builder.Remove(0, end+1);
+				}
+				//Add whatever that is remained of the lines
+				formatted_lines.Add(str_builder.ToString());
+			}
+			else
+			{
+				formatted_lines.Add(lines[i]);
+			}
+		}
+
+		label.Text = "";
+		//Put the formatted visible lines it
+		for (int i = Math.Max(0, formatted_lines.Count - max_lines_count + 1); i < formatted_lines.Count; i++){
+			label.Text += formatted_lines[i];
+			if (i != formatted_lines.Count - 1 || last_char.Equals("\n")){
+				label.Text += '\n';
+			}
+		}
+
+	}
+
+	int test = 1;
 	public override void _Input(InputEvent @event)
 	{
 		base._Input(@event);
@@ -44,13 +87,11 @@ public class CodePanel : Panel
 			if (key_event.IsPressed()){
 				String bruh = "";
 				for (int i = 0; i < test; i++){
-					bruh += "m k";
+					bruh += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 				}
 				label.Text += bruh + "\n";
-				GD.Print(label.RectSize.x);
-				GD.Print("string size: " + ((Font) label.GetFont("normal_font", nameof(RichTextLabel))).GetStringSize(bruh));
-				test += 1;
-				GD.Print(label.GetLineCount());
+				test += 2;
+				ReformatLines();
 			}
 		}
 	}
