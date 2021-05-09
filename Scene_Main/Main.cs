@@ -42,7 +42,6 @@ public class Main : Control
 
 	private void _OnAnyKeyPressed(){
 		String new_code_line = file.GetLine();
-		code_panel.AddLine(new_code_line.Substring(0,new_code_line.Length-1));
 		line_count_num += 1;
 		line_count.Text = "LINE COUNT: " + line_count_num;
 	}
