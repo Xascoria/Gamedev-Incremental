@@ -32,10 +32,22 @@ public class CodePanel : Panel
 		return label_font.GetHeight() + line_separation;
 	}
 
+	public void AddText(String new_text){
+		label.Text += new_text;
+		ReformatLines();
+	}
+
 	//Take the string stored at the richtextlabel, slice it according to visible lines and put it back in.
 	private void ReformatLines()
 	{
-		String last_char = label.Text.Substr(label.Text.Length-1, label.Text.Length);
+		//Doesn't seems to be working properly
+		// if (label.GetLineCount() == label.GetVisibleLineCount()){
+		// 	return;
+		// }
+		String last_char = " ";
+		if (label.Text.Length > 0){
+			last_char = label.Text.Substr(label.Text.Length-1, 1);
+		}
 		//Original lines in the text block
 		String[] lines = label.Text.Split("\n");
 		//Formatted lines
@@ -55,7 +67,7 @@ public class CodePanel : Panel
 						}
 					}
 					formatted_lines.Add(str_builder.ToString(0, end));
-					str_builder.Remove(0, end+1);
+					str_builder.Remove(0, end);
 				}
 				//Add whatever that is remained of the lines
 				formatted_lines.Add(str_builder.ToString());
@@ -78,23 +90,28 @@ public class CodePanel : Panel
 	}
 
 	int test = 1;
-	public override void _Input(InputEvent @event)
-	{
-		base._Input(@event);
+	// public override void _Input(InputEvent @event)
+	// {
+	// 	base._Input(@event);
 
-		if (@event is InputEventKey){
-			InputEventKey key_event = (InputEventKey) @event;
-			if (key_event.IsPressed()){
-				String bruh = "";
-				for (int i = 0; i < test; i++){
-					bruh += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-				}
-				label.Text += bruh + "\n";
-				test += 2;
-				ReformatLines();
-			}
-		}
-	}
+	// 	if (@event is InputEventKey){
+	// 		InputEventKey key_event = (InputEventKey) @event;
+	// 		if (key_event.IsPressed()){
+	// 			String bruh = "";
+	// 			for (int i = 0; i < test; i++){
+	// 				bruh += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	// 			}
+	// 			label.Text += bruh + "\n";
+	// 			test += 2;
+	// 			ReformatLines();
+	// 			CallDeferred(nameof(tester2));
+	// 		}
+	// 	}
+	// }
+
+	// public void tester2(){
+	// 	GD.Print(label.GetVisibleLineCount());
+	// }
 
 
 }

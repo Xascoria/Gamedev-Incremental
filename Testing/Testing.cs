@@ -27,10 +27,6 @@ public class Testing : Panel
 		int line_separation = (int) label.GetConstant("line_separation");
 		label.RectSize = new Vector2(label.RectSize.x, (font.GetHeight()+line_separation)*8);
 
-		String a = "abcd";
-		GD.Print(a);
-		GD.Print(a.Substr(a.Length-1,a.Length));
-
 	}
 
 	public override void _Input(InputEvent @event)
@@ -43,6 +39,7 @@ public class Testing : Panel
 				label.Text += "\nLine" + something;
 				something += 1;
 				EmitSignal(nameof(MySignal));
+				GD.Print(label.GetVisibleLineCount());
 			}
 		}
 	}
@@ -57,7 +54,7 @@ public class Testing : Panel
 		if (Math.Abs(label.GetVScroll().Value - new_val) > delta){
 			label.GetVScroll().Value = (Double) new_val;
 		}
-		GD.Print("bruhbruh");
 	} 
+
 
 }
