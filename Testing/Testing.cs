@@ -36,10 +36,7 @@ public class Testing : Panel
 		if (@event is InputEventKey){
 			InputEventKey key_event = (InputEventKey) @event;
 			if (key_event.IsPressed()){
-				label.Text += "\nLine" + something;
-				something += 1;
-				EmitSignal(nameof(MySignal));
-				GD.Print(label.GetVisibleLineCount());
+				test_freq += 1;
 			}
 		}
 	}
@@ -49,12 +46,19 @@ public class Testing : Panel
 		Font font = (Font) label.GetFont("normal_font", nameof(RichTextLabel));
 		int line_separation = (int) label.GetConstant("line_separation");
 		float new_val = scroll_bar_pos - (scroll_bar_pos % (font.GetHeight() + line_separation));
-		//GD.Print(font.GetHeight() + line_separation);
 		float delta = 0.00001f;
 		if (Math.Abs(label.GetVScroll().Value - new_val) > delta){
 			label.GetVScroll().Value = (Double) new_val;
 		}
 	} 
 
+	int test_freq = 0;
+	private void _on_Timer_timeout()
+	{
+		GD.Print(test_freq);
+		test_freq = 0;
+	}
+
 
 }
+

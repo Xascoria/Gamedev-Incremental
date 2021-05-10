@@ -22,6 +22,7 @@ public class ScriptProcessor
     public String GetScriptText(int length){
         if (length + string_index > cached_script_content.Length){
             StringBuilder str_builder = new StringBuilder(cached_script_content.Substring(string_index));
+            Godot.File file = new File();
             while (str_builder.Length < length){
                 string_index = 0;
                 scripts_index += 1;
@@ -29,7 +30,6 @@ public class ScriptProcessor
                 if (scripts_index == paths_to_scripts.Count){
                     scripts_index = 0;
                 }
-                Godot.File file = new File();
                 file.Open(paths_to_scripts[scripts_index], File.ModeFlags.Read);
                 cached_script_content = file.GetAsText();
 		        file.Close();

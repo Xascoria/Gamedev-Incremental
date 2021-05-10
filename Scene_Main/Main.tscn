@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scene_Main/Main.cs" type="Script" id=1]
 [ext_resource path="res://Scene_Code_Panel/CodePanel.tscn" type="PackedScene" id=2]
@@ -25,6 +25,43 @@ font_data = SubResource( 3 )
 [sub_resource type="DynamicFont" id=5]
 use_mipmaps = true
 font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 28
+use_mipmaps = true
+font_data = SubResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.910156, 0.910156, 0.910156, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 0.447059, 0.278431, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0, 0.447059, 0.278431, 1 )
+
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://Resources/Modeseven-L3n5.ttf"
+
+[sub_resource type="DynamicFont" id=9]
+size = 18
+extra_spacing_top = 1
+font_data = SubResource( 8 )
 
 [node name="Root" type="Control"]
 anchor_right = 1.0
@@ -78,6 +115,76 @@ margin_bottom = 50.0
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0.447059, 0.278431, 1 )
 text = "LINE COUNT: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SidePanel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1096.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhasePanel" type="Panel" parent="SidePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -616.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhaseTitle" type="Label" parent="SidePanel/PhasePanel"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 152.0
+margin_bottom = 48.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0.447059, 0.278431, 1 )
+text = "PHASE 1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhaseName" type="Label" parent="SidePanel/PhasePanel"]
+margin_left = 8.0
+margin_top = 44.0
+margin_right = 152.0
+margin_bottom = 76.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0.447059, 0.278431, 1 )
+text = "INDIE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buildings" type="Button" parent="SidePanel"]
+margin_left = 8.0
+margin_top = 96.0
+margin_right = 168.0
+margin_bottom = 136.0
+focus_mode = 0
+custom_styles/hover = SubResource( 11 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 0, 0.447059, 0.278431, 1 )
+custom_colors/font_color_hover = Color( 0.909804, 0.909804, 0.909804, 1 )
+custom_colors/font_color_pressed = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+text = "Buildings"
 __meta__ = {
 "_edit_use_anchors_": false
 }
