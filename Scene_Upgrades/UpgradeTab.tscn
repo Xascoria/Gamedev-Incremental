@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
@@ -8,14 +8,56 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color( 0, 0.447059, 0.278431, 1 )
 
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://Resources/Modeseven-L3n5.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 18
+extra_spacing_top = 1
+font_data = SubResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 14
+extra_spacing_top = 1
+font_data = SubResource( 2 )
+
 [node name="UpgradeTab" type="Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -320.0
-margin_bottom = -688.0
-rect_min_size = Vector2( 960, 32 )
+margin_right = -272.0
+margin_bottom = -664.0
+rect_min_size = Vector2( 1008, 56 )
 mouse_filter = 2
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Name" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 160.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 3 )
+text = "Upgrade Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Detail" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 32.0
+margin_right = 160.0
+margin_bottom = 52.0
+custom_fonts/font = SubResource( 4 )
+text = "Details"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_left = 900.0
+margin_top = 12.0
+margin_right = 996.0
+margin_bottom = 44.0
+text = "Buy"
