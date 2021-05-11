@@ -27,6 +27,8 @@ public class Testing : Panel
 		int line_separation = (int) label.GetConstant("line_separation");
 		label.RectSize = new Vector2(label.RectSize.x, (font.GetHeight()+line_separation)*8);
 
+		GD.Print("ready is called");
+
 	}
 
 	public override void _Input(InputEvent @event)
