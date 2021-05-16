@@ -28,6 +28,13 @@ public class Testing : Panel
 		label.RectSize = new Vector2(label.RectSize.x, (font.GetHeight()+line_separation)*8);
 
 		GD.Print("ready is called");
+		GD.Print((int) 1.9);
+		GD.Print((int) 1.3);
+
+		double char_increase_rate = 6;
+		int threshold = 5;
+		int char_count = (int) (char_increase_rate - (((int) char_increase_rate/5) * (5 - 1)));
+		GD.Print("ans: " + char_count);
 
 	}
 
@@ -57,7 +64,7 @@ public class Testing : Panel
 	int test_freq = 0;
 	private void _on_Timer_timeout()
 	{
-		GD.Print(test_freq);
+		//GD.Print(test_freq);
 		test_freq = 0;
 	}
 
