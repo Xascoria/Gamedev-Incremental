@@ -25,10 +25,10 @@ public class Autoproductions : Node
 	public void onRefreshTimeout(){
 		production_left_over += (char_increase_rate/get_threshold());
 		int char_output = (int) production_left_over;
-		EmitSignal(nameof(CharFromBuildings), char_output);
-		production_left_over -= char_output;
-		GD.Print("prod_left: " + production_left_over);
-		GD.Print(char_output);
+		if (char_output != 0){
+			EmitSignal(nameof(CharFromBuildings), char_output);
+			production_left_over -= char_output;
+		}
 	}
 
 	//Return 5 when its 0.2
@@ -46,6 +46,10 @@ public class Autoproductions : Node
 				changeCharRate(char_increase_rate + 0.5);
 			}
 		}
+	}
+
+	public double getCharIncreaseRate(){
+		return char_increase_rate;
 	}
 
 }

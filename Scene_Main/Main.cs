@@ -7,8 +7,10 @@ public class Main : Control
 	CodePanel code_panel;
 	Upgrades upgrade_panel;
 	Autoproductions auto_prod;
+
 	Label work_in_progress;
 	Label line_count;
+	Label prod_rate;
 	List<String> paths_to_scripts = new List<string>();
 	Godot.File file = new Godot.File();
 
@@ -27,11 +29,12 @@ public class Main : Control
 
 		work_in_progress = GetNode<Label>("CodeDetailsPanel/CurrentWork");
 		line_count = GetNode<Label>("CodeDetailsPanel/LineCount");
+		prod_rate = GetNode<Label>("CodeDetailsPanel/ProdRate");
 		/*#endregion*/
 
 		//TODO: panel selections
 		upgrade_panel.Visible = false;
-		auto_prod.Connect(nameof(Autoproductions.CharFromBuildings), this, nameof(OnAutoProduct));
+		auto_prod.Connect(nameof(Autoproductions.CharFromBuildings), this, nameof(_OnAutoProduct));
 	}
 
 	public override void _Input(InputEvent @event)
@@ -46,8 +49,19 @@ public class Main : Control
 		}
 	}
 
+	//Called by key presses
 	private void _OnAnyKeyPressed(){
-		String new_string = string_processor.GetScriptText(5);
+		__UpdateCodePanel(1);
+	}
+
+	//Called by auto productions
+	private void _OnAutoProduct(int chars_count){
+		__UpdateCodePanel(chars_count);
+	}
+
+	
+	private void __UpdateCodePanel(int new_char_count){
+		String new_string = string_processor.GetScriptText(new_char_count);
 		code_panel.AddText(new_string);
 		line_count_num += GetNLCountInString(new_string);
 		line_count.Text = "LINE COUNT: " + line_count_num;
@@ -63,8 +77,5 @@ public class Main : Control
 		return output;
 	}
 
-	private void OnAutoProduct(int chars_count){
-		GD.Print(chars_count);
-	}
 
 }

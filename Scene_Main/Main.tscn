@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scene_Main/Main.cs" type="Script" id=1]
 [ext_resource path="res://Scene_Code_Panel/CodePanel.tscn" type="PackedScene" id=2]
@@ -25,6 +25,10 @@ use_mipmaps = true
 font_data = SubResource( 3 )
 
 [sub_resource type="DynamicFont" id=5]
+use_mipmaps = true
+font_data = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=12]
 use_mipmaps = true
 font_data = SubResource( 3 )
 
@@ -135,6 +139,19 @@ margin_bottom = 50.0
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0, 0.447059, 0.278431, 1 )
 text = "LINE COUNT: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProdRate" type="Label" parent="CodeDetailsPanel"]
+margin_left = 584.0
+margin_top = 32.0
+margin_right = 1072.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0, 0.447059, 0.278431, 1 )
+text = "Buildings generate 0 char/s"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
