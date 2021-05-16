@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Main : Control
 {
 	CodePanel code_panel;
+	Upgrades upgrade_panel;
+	Autoproductions auto_prod;
 	Label work_in_progress;
 	Label line_count;
 	List<String> paths_to_scripts = new List<string>();
@@ -19,10 +21,17 @@ public class Main : Control
 	{
 		// On ready
 		/*#region*/
-		code_panel = GetNode<CodePanel>("CodePanel");
+		code_panel = GetNode<CodePanel>("MainPanel/CodePanel");
+		upgrade_panel = GetNode<Upgrades>("MainPanel/UpgradePanel");
+		auto_prod = GetNode<Autoproductions>("AutoProd");
+
 		work_in_progress = GetNode<Label>("CodeDetailsPanel/CurrentWork");
 		line_count = GetNode<Label>("CodeDetailsPanel/LineCount");
 		/*#endregion*/
+
+		//TODO: panel selections
+		upgrade_panel.Visible = false;
+		auto_prod.Connect(nameof(Autoproductions.CharFromBuildings), this, nameof(OnAutoProduct));
 	}
 
 	public override void _Input(InputEvent @event)
@@ -52,6 +61,10 @@ public class Main : Control
 			}
 		}
 		return output;
+	}
+
+	private void OnAutoProduct(int chars_count){
+		GD.Print(chars_count);
 	}
 
 }
